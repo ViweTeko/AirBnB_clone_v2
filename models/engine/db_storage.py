@@ -65,11 +65,11 @@ class DBStorage:
             if cls is None:
                 obj = self.__session.query(State).all()
                 obj.extend(self.__session.query(City).all())
-                obj.extend(self.__session(City).all())
-                obj.extend(self.__session(User).all())
-                obj.extend(self.__session(Place).all())
-                obj.extend(self.__session(Review).all())
-                obj.extend(self.__session(Amenity).all())
+                obj.extend(self.__session.query(City).all())
+                obj.extend(self.__session.query(User).all())
+                obj.extend(self.__session.query(Place).all())
+                obj.extend(self.__session.query(Review).all())
+                obj.extend(self.__session.query(Amenity).all())
             else:
                 if type(cls) == str:
                     cls = eval(cls)
