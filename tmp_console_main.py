@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
         if class_match is not None:
             class_name = class_match.group('name')
             str_param = args[len(class_name):].strip()
-            params = str_param.split(' ')
+            params = str_params.split(' ')
             str_patn = r'(?P<t_str>"([^"]|\")*)'
             float_patn = r'(?P<t_float>[-+]?\d+\.\d+)'
             int_patn = r'(?P<t_int>[-+]?\d+)'
@@ -372,3 +372,5 @@ class HBNBCommand(cmd.Cmd):
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
 
+if __name__ == "__main__":
+    HBNBCommand().cmdloop()
