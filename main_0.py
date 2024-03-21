@@ -39,7 +39,6 @@ shutil.copy("models/__init__.py", "models/tmp__init__.py")
 if os.path.exists("switch_to_file_storage.py"):
     shutil.copy("switch_to_file_storage.py", "models/__init__.py")
 
-
 """
  Updating console to remove "__main__"
 """
