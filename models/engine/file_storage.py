@@ -42,7 +42,7 @@ class FileStorage:
 
     def save(self):
         """Serialize __objects to the JSON file"""
-        here = {x: self.__objects[o].to_dict() for x in self.__objects.keys()}
+        here = {x: self.__objects[x].to_dict() for x in self.__objects.keys()}
         with open(self.__file_path, 'w', encoding='utf-8') as f:
             json.dump(here, f)
 
@@ -62,7 +62,7 @@ class FileStorage:
         self.reload()
 
     def delete(self, obj=None):
-        """Deletes a given __ objects if it exists"""
+        """Deletes a given __objects if it exists"""
         try:
             del self.__objects["{}.{}".format(type(obj).__name__, obj.id)]
         except (AttributeError, KeyError):
