@@ -152,7 +152,7 @@ class HBNBCommand(cmd.Cmd):
                         ob_kwargs[key_name] = v_str[1:-1].replace('_', ' ')
         else:
             class_name = args
-        
+
         if not class_name:
             print("** class name missing **")
             return
@@ -239,7 +239,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
+            storage.delete(storage.all()[key])
             storage.save()
         except KeyError:
             print("** no instance found **")
@@ -371,4 +371,3 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
-
