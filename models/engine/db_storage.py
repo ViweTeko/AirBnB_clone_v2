@@ -42,7 +42,8 @@ class DBStorage:
 
     def delete(self, ob=None):
         """Deletes ob(ject) from current database session"""
-        self.__session.delete(ob)
+        if ob is not None:
+            self.__session.delete(ob)
 
     def save(self):
         """Commit(s) all changes to current database session"""
@@ -56,24 +57,24 @@ class DBStorage:
         Session = scoped_session(session_maker)
         self.__session = Session()
 
-        def all(self, cls=None):
-            """Query on current database session all obj(ects) of given class
+    def all(self, cls=None):
+        """Query on current database session all obj(ects) of given class
 
-            Return:
-                Dict of queried class <class name>.<obj id> = obj
-            """
-            if cls is None:
-                obj = self.__session.query(State).all()
-                obj.extend(self.__session.query(City).all())
-                obj.extend(self.__session.query(User).all())
-                obj.extend(self.__session.query(Place).all())
-                obj.extend(self.__session.query(Review).all())
-                obj.extend(self.__session.query(Amenity).all())
-            else:
-                if type(cls) == str:
-                    cls = eval(cls)
-                obj = self.__session.query(cls)
-            return {"{}.{}".format(type(x).__name__, x.id): x for x in obj}
+        Return:
+            Dict of queried class <class name>.<obj id> = obj
+        """
+        if cls is None:
+            obj = self.__session.query(State).all()
+            obj.extend(self.__session.query(City).all())
+            obj.extend(self.__session.query(User).all())
+            obj.extend(self.__session.query(Place).all())
+            obj.extend(self.__session.query(Review).all())
+            obj.extend(self.__session.query(Amenity).all())
+        else:
+            if type(cls) == str:
+                cls = eval(cls)
+            obj = self.__session.query(cls)
+        return {"{}.{}".format(type(x).__name__, x.id): x for x in obj}
 
     def close(self):
         """Close working database session"""
