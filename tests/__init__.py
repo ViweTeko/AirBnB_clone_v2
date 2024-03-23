@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Tests AirBnB clone modules """
 import os
-deom typing import TextIO
+from typing import TextIO
 from models.engine.file_storage import FileStorage
 
 
@@ -13,6 +13,7 @@ def clear_stream(stream: TextIO):
     if stream.seekable():
         stream.seek(0)
         stream.truncate(0)
+
 
 def read_text_file(file_name):
     """Reads content of given file
@@ -28,6 +29,7 @@ def read_text_file(file_name):
                 lines.append(line)
     return ''.join(lines)
 
+
 def write_text_file(file_name, text):
     """Writes a text to given file
     Args:
@@ -36,6 +38,7 @@ def write_text_file(file_name, text):
     """
     with open(file_name, mode='w') as f:
         f.write(text)
+
 
 def reset_store(store: FileStorage, file_path='file.json'):
     """Resets items in given store
@@ -47,6 +50,7 @@ def reset_store(store: FileStorage, file_path='file.json'):
         f.write('{}')
         if store is not None:
             store.reload()
+
 
 def delete_file(file_path: str):
     """Removes existing file
